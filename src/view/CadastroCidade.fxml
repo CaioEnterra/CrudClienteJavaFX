@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CidadeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CidadeController">
    <top>
       <AnchorPane prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,10 +24,13 @@
    <center>
       <AnchorPane prefHeight="279.0" prefWidth="360.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Label fx:id="lbNome" contentDisplay="TOP" layoutX="39.0" layoutY="35.0" prefHeight="25.0" prefWidth="80.0" text="Nome:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <Label fx:id="lbNome" contentDisplay="TOP" layoutX="39.0" layoutY="35.0" onMouseClicked="#handleMouseClickedNome" prefHeight="25.0" prefWidth="80.0" text="Nome:" textFill="#1a2cb9" underline="true" wrapText="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
                <font>
                   <Font size="16.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <TextField fx:id="tfNome" alignment="TOP_CENTER" layoutX="50.0" layoutY="77.0" prefHeight="25.0" prefWidth="215.0" promptText="Digite aqui o nome da CIDADE que deseja cadastrar." AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="80.0" />
             <Label fx:id="lbEsdado" contentDisplay="TOP" layoutX="50.0" layoutY="100.0" prefHeight="25.0" prefWidth="80.0" text="Estado:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="110.0">
