@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import factory.CidadeListControllerFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -109,23 +110,13 @@ public class CidadeController extends Controller<Cidade> {
 	//comunicação entre as classses
 	void handleMouseClickedNome(MouseEvent event) throws IOException {
 		
-		Stage stage = new Stage();
-		FXMLLoader loader = new FXMLLoader(getCidade().getClass().getResource("/view/ListagemCidade.fxml"));
-		Parent root = loader.load();
+		CidadeListController listagem = CidadeListControllerFactory.getIntance();
 		
-		//obtendo o controlador
-		CidadeListController listagem = loader.getController();
-
-		Scene scene = new Scene(root, 600, 600);
-
-		stage.setTitle("Cadastro Cidade");
-		stage.setScene(scene);
-
-		// impede o usuatrio de mexer nas funcionalidades da tela anterior
-		stage.initModality(Modality.APPLICATION_MODAL);
-		//passando parametro para ele fechar a tela 
-		listagem.setStage(stage);
-		stage.showAndWait();
+		listagem.abrir();
+		// setando a cidade
+		setCidade(listagem.getCidadeSelecionada());
+		
+	
 		
 		// setando a cidade
 		setCidade(listagem.getCidadeSelecionada());

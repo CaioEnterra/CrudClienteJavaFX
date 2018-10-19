@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,6 +20,18 @@ public class Cliente extends DefaultEntity<Cliente> {
 	private String endereco;
 	private String email;
 	
+	@ManyToOne
+	@JoinColumn(name="idCidadeNatal")
+	private Cidade cidadeNatal;
+	
+	public Cidade getCidadeNatal() {
+		return cidadeNatal;
+	}
+
+	public void setCidadeNatal(Cidade cidadeNatal) {
+		this.cidadeNatal = cidadeNatal;
+	}
+
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="cliente")
 	private List<Telefone> listaTelefone;
 	
@@ -28,13 +42,14 @@ public class Cliente extends DefaultEntity<Cliente> {
 		
 	}
 
-	public Cliente(String cpf, String nome, String endereco, String email, LocalDate dataAniversario) {
+	public Cliente(String cpf, String nome, String endereco, String email, LocalDate dataAniversario, Cidade cidadeNatal) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.email = email;
 		this.dataAniversaio = dataAniversario;
+		this.cidadeNatal = cidadeNatal;
 	}
 
 	public String getCpf() {

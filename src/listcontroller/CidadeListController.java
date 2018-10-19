@@ -9,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -19,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Cidade;
 import model.Cliente;
@@ -26,8 +29,18 @@ import repository.CidadeRepository;
 
 public class CidadeListController implements Initializable {
 
+	private Parent parent;
+
 	private Cidade cidade;
 	private Stage stage;
+
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
 
 	public Stage getStage() {
 		return stage;
@@ -35,6 +48,19 @@ public class CidadeListController implements Initializable {
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+	}
+
+	public void abrir() {
+		stage = new Stage();
+		
+		Scene scene = new Scene(parent, 600, 600);
+		stage.setTitle("Consulta de cidade");
+		stage.setScene(scene);
+		// impede o usuatrio de mexer nas funcionalidades da tela anterior
+		stage.initModality(Modality.APPLICATION_MODAL);
+			
+		stage.showAndWait();
+		
 	}
 
 	@FXML
@@ -79,13 +105,13 @@ public class CidadeListController implements Initializable {
 
 		// verificando se eh o botao principal
 		if (event.getButton().equals(MouseButton.PRIMARY)) {
-			
+
 			// verificando a quantidade de cliques
 			if (event.getClickCount() == 2) {
-				
-				//preenche a cidade
+
+				// preenche a cidade
 				cidade = tvListagem.getSelectionModel().getSelectedItem();
-				//fecha a tela 
+				// fecha a tela
 				getStage().close();
 				System.out.println(cidade.getNome());
 
